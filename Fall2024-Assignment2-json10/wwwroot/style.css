@@ -1,0 +1,41 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('https://source.unsplash.com/random/1600x900'); /* Initial background image */
+    background-size: cover;
+    text-align: center;
+    color: #fff;
+}
+
+header {
+    margin-top: 50px;
+}
+
+h1 {
+    font-size: 3em;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* for search input and button styles */
+#query {
+    padding: 10px;
+    font-size: 1.2em;
+    width: 60%;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/* for results and time styling */
+#searchResults, #time {
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 5px;
+    display: none;
+}
