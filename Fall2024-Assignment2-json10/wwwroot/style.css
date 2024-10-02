@@ -1,7 +1,6 @@
-
 body {
     font-family: Arial, sans-serif;
-    background-image: url('https://source.unsplash.com/random/1600x900'); /* Initial background image */
+    background-image: url('https://unsplash.com/photos/a-halloween-scene-with-pumpkins-and-a-tree-p_0CLZXH9zg');
     background-size: cover;
     text-align: center;
     color: #fff;
@@ -17,7 +16,11 @@ h1 {
     cursor: pointer;
 }
 
-/* for search input and button styles */
+#searchEngineTagline {
+    font-size: 1.5em;
+    color: white;
+}
+
 #query {
     padding: 10px;
     font-size: 1.2em;
@@ -31,7 +34,6 @@ button {
     cursor: pointer;
 }
 
-/* for results and time styling */
 #searchResults, #time {
     margin-top: 20px;
     background-color: rgba(0, 0, 0, 0.5);

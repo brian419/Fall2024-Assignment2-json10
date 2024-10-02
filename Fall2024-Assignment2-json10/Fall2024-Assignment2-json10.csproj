@@ -9,4 +9,10 @@
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
+  <ItemGroup>
+    <Content Remove="wwwroot\css\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\css\" />
+  </ItemGroup>
 </Project>
