@@ -36,7 +36,7 @@ $(document).ready(function () {
             .done(function (data) {
                 if (data.webPages && data.webPages.value.length > 0) {
                     var len = data.webPages.value.length;
-                    var results = '<h2>Search Results:</h2>';
+                    var results = '';
 
                     for (var i = 0; i < len; i++) {
                         var result = data.webPages.value[i];
