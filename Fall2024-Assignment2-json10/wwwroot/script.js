@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    var intervalId; 
+
     function changeBackgroundImage() {
         getRandomImage(function (newImage) {
             $('body').css('background-image', `url(${newImage})`);
@@ -35,20 +37,23 @@ $(document).ready(function () {
         })
             .done(function (data) {
                 if (data.webPages && data.webPages.value.length > 0) {
-                    var len = data.webPages.value.length;
-                    var results = '';
+                    if (isLucky) {
+                        window.location.href = data.webPages.value[0].url;
+                    } else {
+                        var len = data.webPages.value.length;
+                        var results = '';
 
-                    for (var i = 0; i < len; i++) {
-                        var result = data.webPages.value[i];
-                        results += `<p><a href="${result.url}" target="_blank">${result.name}</a>: ${result.snippet}</p>`;
+                        for (var i = 0; i < len; i++) {
+                            var result = data.webPages.value[i];
+                            results += `<p><a href="${result.url}" target="_blank">${result.name}</a>: ${result.snippet}</p>`;
+                        }
+
+                        $('#searchResults').html(results).dialog({
+                            title: "Search Results",
+                            width: 600,
+                            modal: true
+                        });
                     }
-
-                    $('#searchResults').html(results).dialog({
-                        title: "Search Results",
-                        width: 600,
-                        modal: true
-                    });
-
                 } else {
                     $('#searchResults').html('<p>No results found.</p>').dialog({
                         title: "Search Results",
@@ -62,6 +67,7 @@ $(document).ready(function () {
             });
     }
 
+
     $('#searchButton').on('click', function () {
         apiSearch();
     });
@@ -71,18 +77,51 @@ $(document).ready(function () {
     });
 
     $('#timeButton').on('click', function () {
+        if (!intervalId) { 
+            updateTime(); 
+            intervalId = setInterval(updateTime, 1000); 
+        }
+
+        showDialogWithCurrentTime();
+    });
+
+    function updateTime() {
         var currentTime = new Date();
 
         var hours = currentTime.getHours();
         var minutes = currentTime.getMinutes();
+        var seconds = currentTime.getSeconds();
         minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
 
-        var formattedTime = hours + ":" + minutes;
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
 
-        $('#time').html('Current time: ' + formattedTime).dialog({
+        var formattedTime = hours + ":" + minutes + ":" + seconds + " " + ampm;
+
+        $('#timeButton').text('Current time: ' + formattedTime);
+    }
+
+    function showDialogWithCurrentTime() {
+        var currentTime = new Date();
+
+        var hours = currentTime.getHours();
+        var minutes = currentTime.getMinutes();
+        var seconds = currentTime.getSeconds();
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+
+        var formattedTime = hours + ":" + minutes + ":" + seconds + " " + ampm;
+
+        $('#time').html(formattedTime).dialog({
             title: "Current Time",
             width: 300,
             modal: true
         });
-    });
+    }
 });

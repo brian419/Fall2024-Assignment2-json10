@@ -57,9 +57,25 @@ button {
 
 #searchResults, #time {
     margin-top: 20px;
-    background-color: rgba(255, 255, 255);
+    background-color: #D6D6F5;
+    color: black;
     padding: 20px;
     border-radius: 5px;
-/*    visibility: hidden;  */
+    /*    visibility: hidden;  */
     display: none;
+}
+
+#searchResults p {
+    margin: 15px 0; 
+    padding: 10px;
+    background-color: rgba(214, 214, 245, 0.8); 
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid #D6D6F5; 
+}
+
+
+#searchResults p:hover {
+    background-color: white;
+
 }
